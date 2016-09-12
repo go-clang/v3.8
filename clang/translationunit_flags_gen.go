@@ -89,6 +89,8 @@ const (
 	TranslationUnit_SkipFunctionBodies = C.CXTranslationUnit_SkipFunctionBodies
 	// Used to indicate that brief documentation comments should be included into the set of code completions returned from this translation unit.
 	TranslationUnit_IncludeBriefCommentsInCodeCompletion = C.CXTranslationUnit_IncludeBriefCommentsInCodeCompletion
+	// Used to indicate that the precompiled preamble should be created on the first parse. Otherwise it will be created on the first reparse. This trades runtime on the first parse (serializing the preamble takes time) for reduced runtime on the second parse (can now reuse the preamble).
+	TranslationUnit_CreatePreambleOnFirstParse = C.CXTranslationUnit_CreatePreambleOnFirstParse
 )
 
 func (tuf TranslationUnit_Flags) Spelling() string {
@@ -111,6 +113,8 @@ func (tuf TranslationUnit_Flags) Spelling() string {
 		return "TranslationUnit=SkipFunctionBodies"
 	case TranslationUnit_IncludeBriefCommentsInCodeCompletion:
 		return "TranslationUnit=IncludeBriefCommentsInCodeCompletion"
+	case TranslationUnit_CreatePreambleOnFirstParse:
+		return "TranslationUnit=CreatePreambleOnFirstParse"
 	}
 
 	return fmt.Sprintf("TranslationUnit_Flags unkown %d", int(tuf))

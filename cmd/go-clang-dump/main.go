@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/go-clang/bootstrap/clang"
+	"github.com/go-clang/v3.8/clang"
 )
 
 var fname = flag.String("fname", "", "the file to analyze")
